@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchWeatherAction } from "./redux/slices/weatherSlices";
-import weatherSVG from "./img/weather.png";
 //display icon https://openweathermap.org/img/wn/${icon}.png
 function App() {
   const [city, setCity] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchWeatherAction(city));
+    dispatch(fetchWeatherAction("Delhi"));
   }, []);
 
   const state = useSelector((state) => state);
@@ -28,7 +27,7 @@ function App() {
           </h2>
           {/* Input */}
           <input
-            onClick={() => dispatch(fetchWeatherAction(city))}
+            // onClick={() => dispatch(fetchWeatherAction(city))}
             value={city}
             onChange={(e) => setCity(e.target.value)}
             placeholder="Search City"
@@ -36,6 +35,7 @@ function App() {
           ></input>
           {/* Button */}
           <button
+            onClick={() => dispatch(fetchWeatherAction(city))}
             type="button"
             className="inline-flex items-center px-3 pr-3 28 text-center py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
